@@ -1,7 +1,6 @@
-using System.Reflection;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using MediatR;
+using Application;
+using MongoDB.Driver;
+using WebApi.Configuration;
 
 namespace WebApi;
 
@@ -16,11 +15,13 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddMongoDB(_configuration);
+        
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
-        // services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Startup).Assembly));
         services.AddApplication();
+        services.AddInfrastructure();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

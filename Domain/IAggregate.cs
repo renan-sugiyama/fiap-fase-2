@@ -1,4 +1,4 @@
-namespace Domain.Aggregates;
+namespace Domain;
 
 public interface IAggregate : IEntity
 {
